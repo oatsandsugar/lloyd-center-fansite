@@ -1,0 +1,635 @@
+/* ============================================
+   Lloyd Center Fan Page — Stylesheet
+   JAZZ CUP / MEMPHIS 90s
+   Teal swooshes, pink circles, zig-zags
+   Last updated: February 2026
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;800;900&display=swap');
+
+:root {
+    --purple: #5b4bb5;
+    --purple-deep: #3d2d8a;
+    --teal: #00c9b7;
+    --teal-dark: #009e8f;
+    --pink: #ff6b9d;
+    --pink-hot: #ff3c7f;
+    --yellow: #ffd23f;
+    --black: #1a1a2e;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --text-light: #6e6e8a;
+    --bg: #ffffff;
+    --bg-card: #f8f7ff;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 400;
+    color: var(--text);
+    background-color: var(--bg);
+}
+
+/* =============================================
+   SPLASH PAGE
+   ============================================= */
+body.splash {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    background-color: var(--purple-deep);
+    color: var(--white);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Big pink circle top-right */
+body.splash::before {
+    content: "";
+    position: fixed;
+    top: -40px;
+    right: -40px;
+    width: 200px;
+    height: 200px;
+    background: var(--pink);
+    border-radius: 50%;
+}
+
+/* Teal circle bottom-left */
+body.splash::after {
+    content: "";
+    position: fixed;
+    bottom: -20px;
+    left: -20px;
+    width: 160px;
+    height: 160px;
+    background: var(--teal);
+    border-radius: 50%;
+}
+
+body.splash .splash-content {
+    max-width: 400px;
+    padding: 30px 24px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Big yellow triangle, top-left */
+body.splash .splash-content::before {
+    content: "";
+    position: fixed;
+    top: 12%;
+    left: 8%;
+    width: 0;
+    height: 0;
+    border-left: 45px solid transparent;
+    border-right: 45px solid transparent;
+    border-bottom: 80px solid var(--yellow);
+    transform: rotate(-15deg);
+}
+
+/* Squiggle line via SVG, right side */
+body.splash .splash-content::after {
+    content: "";
+    position: fixed;
+    right: 6%;
+    top: 40%;
+    width: 20px;
+    height: 200px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='200'%3E%3Cpath d='M10 0 Q0 15 10 30 Q20 45 10 60 Q0 75 10 90 Q20 105 10 120 Q0 135 10 150 Q20 165 10 180 Q0 195 10 200' stroke='%23ffd23f' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+body.splash h1 {
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 8px;
+    text-shadow: 3px 3px 0 var(--pink-hot);
+}
+
+body.splash .subtitle {
+    font-size: 16px;
+    color: var(--yellow);
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+body.splash p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+body.splash hr {
+    border: none;
+    border-top: 4px dashed var(--teal);
+    margin: 24px auto;
+    width: 60%;
+}
+
+body.splash .enter-link {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--black);
+    background: var(--yellow);
+    text-decoration: none;
+    padding: 14px 48px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border-bottom: 4px solid var(--purple);
+    box-shadow: 5px 5px 0 rgba(26,26,46,0.2);
+}
+
+body.splash .enter-link:hover {
+    background: var(--teal);
+    color: var(--white);
+}
+
+body.splash .construction {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 40px;
+}
+
+/* --- Splash: Mobile fixes --- */
+@media (max-width: 600px) {
+    /* Shrink corner circles, push further off-screen */
+    body.splash::before {
+        width: 110px;
+        height: 110px;
+        top: -40px;
+        right: -40px;
+    }
+
+    body.splash::after {
+        width: 90px;
+        height: 90px;
+        bottom: -35px;
+        left: -35px;
+    }
+
+    /* Smaller triangle, tucked into corner */
+    body.splash .splash-content::before {
+        top: 1%;
+        left: -6%;
+        border-left: 22px solid transparent;
+        border-right: 22px solid transparent;
+        border-bottom: 40px solid var(--yellow);
+    }
+
+    /* Squiggle: smaller, pushed to edge */
+    body.splash .splash-content::after {
+        right: -2%;
+        height: 100px;
+        width: 14px;
+    }
+
+}
+
+/* =============================================
+   SITE HEADER
+   ============================================= */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: var(--purple);
+    z-index: 100;
+}
+
+.site-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.site-title a,
+.site-title a:visited {
+    color: var(--white);
+    text-decoration: none;
+    border-bottom: none;
+}
+
+.menu-toggle {
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--black);
+    background: var(--yellow);
+    border: none;
+    padding: 4px 14px;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 rgba(26,26,46,0.15);
+}
+
+/* =============================================
+   NAVIGATION
+   ============================================= */
+.site-nav {
+    display: none;
+    background-color: var(--purple-deep);
+    border-bottom: 4px solid var(--purple);
+    padding: 8px 0 12px;
+}
+
+.site-nav.open {
+    display: block;
+}
+
+.site-nav .nav-section {
+    font-size: 11px;
+    color: var(--yellow);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    padding: 16px 20px 4px;
+    font-weight: 700;
+}
+
+.site-nav a,
+.site-nav a:visited {
+    display: block;
+    color: var(--white);
+    text-decoration: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: none;
+    border-left: 4px solid transparent;
+}
+
+.site-nav a:active,
+.site-nav a:hover {
+    color: var(--yellow);
+    background-color: rgba(255, 255, 255, 0.06);
+    border-left-color: var(--teal);
+}
+
+.site-nav a.active,
+.site-nav a.active:visited {
+    color: var(--yellow);
+    font-weight: 700;
+    border-left-color: var(--pink);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* =============================================
+   MAIN CONTENT
+   ============================================= */
+.content {
+    padding: 24px 16px 48px;
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* =============================================
+   TYPOGRAPHY
+   Bold. Chunky. Fun.
+   ============================================= */
+h1, h2, h3 {
+    font-family: 'Rubik', sans-serif;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--purple);
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 4px;
+    border: none;
+    padding: 0;
+}
+
+h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--teal-dark);
+    margin-top: 32px;
+    margin-bottom: 10px;
+    border: none;
+    padding: 0;
+    padding-left: 12px;
+    border-left: 5px solid var(--pink);
+}
+
+h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--purple);
+}
+
+p {
+    line-height: 1.7;
+    margin: 12px 0;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin-bottom: 6px;
+}
+
+strong {
+    font-weight: 700;
+    color: var(--purple-deep);
+}
+
+em {
+    font-style: italic;
+    color: var(--teal-dark);
+}
+
+/* =============================================
+   LINKS
+   ============================================= */
+a {
+    color: var(--purple);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 3px solid var(--teal);
+}
+
+a:visited {
+    color: var(--purple-deep);
+}
+
+a:hover, a:active {
+    border-bottom-color: var(--pink);
+    color: var(--pink-hot);
+}
+
+/* =============================================
+   HORIZONTAL RULES — DASHED!
+   ============================================= */
+hr {
+    border: none;
+    border-top: 4px dashed var(--teal);
+    margin: 28px 0;
+}
+
+/* =============================================
+   STORE INFO BOX
+   ============================================= */
+.store-info {
+    background: var(--yellow);
+    padding: 16px 18px;
+    margin: 20px 0;
+    box-shadow: 4px 4px 0 rgba(26,26,46,0.15);
+}
+
+.store-info dt {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--black);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 10px;
+    opacity: 0.6;
+}
+
+.store-info dt:first-child {
+    margin-top: 0;
+}
+
+.store-info dd {
+    margin-left: 0;
+    margin-bottom: 0;
+    color: var(--black);
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.store-info dd a {
+    color: var(--purple-deep);
+    border-bottom-color: var(--purple-deep);
+}
+
+/* =============================================
+   LINKS PAGE
+   ============================================= */
+.links-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.links-list li {
+    margin-bottom: 10px;
+    padding: 12px 16px;
+    border: none;
+    border-left: 5px solid var(--teal);
+    background: var(--bg-card);
+}
+
+.links-list li::before {
+    content: none;
+}
+
+.links-list .link-desc {
+    display: block;
+    font-size: 13px;
+    color: var(--text-light);
+    margin-top: 2px;
+}
+
+/* =============================================
+   PAGE FOOTER
+   ============================================= */
+.page-footer {
+    margin-top: 36px;
+    padding-top: 16px;
+    font-size: 12px;
+    color: var(--text-light);
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Dashed footer rule */
+.page-footer::before {
+    content: "";
+    display: block;
+    height: 0;
+    border-top: 4px dashed var(--pink);
+    margin-bottom: 14px;
+}
+
+.page-footer a,
+.page-footer a:visited {
+    color: var(--purple);
+    border-bottom-color: transparent;
+}
+
+/* =============================================
+   BLOCKQUOTES
+   ============================================= */
+blockquote {
+    margin: 20px 0;
+    padding: 14px 18px;
+    background-color: var(--bg-card);
+    font-style: italic;
+    border-left: 6px solid var(--purple);
+}
+
+/* --- Images --- */
+img {
+    border: none;
+}
+
+/* --- Tables --- */
+table {
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 15px;
+    width: 100%;
+    border: none;
+}
+
+th {
+    background: var(--purple);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 10px 14px;
+    text-align: left;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+}
+
+td {
+    padding: 10px 14px;
+    border: none;
+    background: var(--bg-card);
+}
+
+/* --- Utility --- */
+.center { text-align: center; }
+.small {
+    font-size: 13px;
+}
+
+/* =============================================
+   TIMELINE
+   ============================================= */
+.timeline {
+    position: relative;
+    padding-left: 28px;
+    margin: 24px 0;
+}
+
+.timeline::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--teal);
+}
+
+.timeline-event {
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.timeline-event::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 3px;
+    width: 14px;
+    height: 14px;
+    background: var(--pink);
+    border-radius: 50%;
+}
+
+.timeline-event.timeline-era::before {
+    background: var(--yellow);
+    width: 18px;
+    height: 18px;
+    left: -30px;
+    top: 1px;
+}
+
+.timeline-date {
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.timeline-era .timeline-date {
+    font-size: 15px;
+    color: var(--teal-dark);
+    letter-spacing: 1px;
+}
+
+.timeline-desc {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+/* --- Nav footer --- */
+.nav-footer {
+    padding: 14px 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 8px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.nav-footer a,
+.nav-footer a:visited {
+    color: rgba(255, 255, 255, 0.55);
+    text-decoration: none;
+    border-bottom: none;
+}
+
+/* =============================================
+   DARK MODE
+   ============================================= */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #141428;
+        --bg-card: #1e1e3a;
+        --text: #e4e2f0;
+        --text-light: #9b99b5;
+    }
+
+    /* Headings: bright on dark */
+    h1 { color: var(--yellow); }
+    h2 { color: var(--teal); }
+    h3 { color: var(--teal); }
+
+    /* Emphasis */
+    strong { color: var(--pink); }
+    em { color: var(--teal); }
+
+    /* Links: teal with pink accent */
+    a { color: var(--teal); border-bottom-color: var(--pink); }
+    a:visited { color: var(--teal); }
+    a:hover, a:active { color: var(--yellow); border-bottom-color: var(--yellow); }
+
+    /* Page footer */
+    .page-footer a,
+    .page-footer a:visited { color: var(--teal); }
+
+    /* Timeline */
+    .timeline-date { color: var(--yellow); }
+    .timeline-era .timeline-date { color: var(--teal); }
+}
